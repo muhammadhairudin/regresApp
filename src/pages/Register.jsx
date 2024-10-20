@@ -2,19 +2,26 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
+/**
+ * Komponen untuk registrasi akun
+ */
 const Register = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const [email, setEmail] = useState(''); // state untuk menyimpan email yang diinputkan
+  const [password, setPassword] = useState(''); // state untuk menyimpan password yang diinputkan
+  const [error, setError] = useState(''); // state untuk menyimpan pesan error jika registrasi gagal
+  const navigate = useNavigate(); // fungsi untuk mengarahkan ke halaman lain
 
+  /**
+   * Fungsi untuk menghandle registrasi
+   * @param {Event} e - event submit form
+   */
   const handleRegister = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // mencegah reload halaman
     try {
-      await axios.post('https://reqres.in/api/register', { email, password });
-      navigate('/login');
+      await axios.post('https://reqres.in/api/register', { email, password }); // mengirimkan data registrasi ke server
+      navigate('/login'); // mengarahkan ke halaman login jika registrasi berhasil
     } catch (err) {
-      setError('Registration failed. Please use eve.holt@reqres.in with any password.');
+      setError('Registration failed. Please use eve.holt@reqres.in with any password.'); // menampilkan pesan error jika registrasi gagal
     }
   };
 

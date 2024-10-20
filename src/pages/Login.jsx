@@ -4,13 +4,26 @@ import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
 
+/**
+ * Komponen untuk login
+ * Menggunakan state untuk menyimpan email dan password
+ * Menggunakan useContext untuk mengakses fungsi login dari AuthContext
+ * Menggunakan useNavigate untuk mengarahkan ke halaman yang diinginkan setelah login
+ */
+const Login = () => {
+  const [email, setEmail] = useState(''); // state untuk menyimpan email
+  const [password, setPassword] = useState(''); // state untuk menyimpan password
+  const [error, setError] = useState(''); // state untuk menyimpan error message
+  const navigate = useNavigate(); // fungsi untuk mengarahkan ke halaman yang diinginkan
+  const { login } = useContext(AuthContext); // fungsi login dari AuthContext
+
+  /**
+   * Fungsi untuk handle submit form login
+   * Menggunakan axios untuk mengirim request ke API
+   * Jika berhasil, maka akan mengarahkan ke halaman yang diinginkan
+   * Jika gagal, maka akan menampilkan error message
+   */
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
